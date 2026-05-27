@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="dash.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="topsection">
+        <!-- cards -->
+        <div class="cards">
+          <div class="mean">
+            <div class="mai">
+              <p>UGX 20000000</p>
+              <p>sales</p>
+            </div>
+            <div class="mai">
+              <p>UGX 15000000</p>
+              <p>Orders</p>
+            </div>
+          </div>
+          <div class="cards-work">
+            <div class="mai">
+              <p>9</p>
+              <p>Instock</p>
+            </div>
+            <div class="mai">
+              <p>10</p>
+              <p>Out of stock</p>
+            </div>
+          </div>
+        </div>
+        <!-- end of cards -->
+        <!-- form -->
+        <div class="form">
+          <h1>Add Product</h1>
+          <form action="post" method="dashboard">
+            <div  class="overall">
+              <div class="mahi">
+                <input
+                  type="text"
+                  name="productName"
+                  placeholder="ProductName"
+                />
+                <input type="text" name="category" placeholder="Category" />
+                <input type="number" name="price" placeholder="Price" />
+                <input type="number" name="quantity" placeholder="Quantity" />
+                <div class="baby">
+                  <input class="two" type="color" placeholder="color" name="color" />
+                  <input class="two"  type="file" placeholder="Upload image" name="image" />
+                </div>
+              </div>
+              <div class="mama">
+                <button type="submit">Save</button>
+                <button type="clear">Clear</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- end of form -->
+      </div>
+      <div class="table">
+        <table>
+          <thead>
+            <tr>
+              <th>io</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Price (UGX)</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>poi</td>
+              <td>Sumi</td>
+              <td>Miol</td>
+              <td>2000</td>
+              <td>900</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

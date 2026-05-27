@@ -1,0 +1,314 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #f3f3f3;
+  padding: 18px;
+  color: #222;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+.container {
+  width: 100%;
+  max-width: 1250px;
+  margin: auto;
+}
+
+/* =========================
+   TOP SECTION
+========================= */
+.topsection {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* =========================
+   LEFT SECTION
+========================= */
+.cards {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* =========================
+   BIG CARD
+========================= */
+.mean {
+  background: white;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+  min-height: 255px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+  padding: 20px;
+}
+
+.mean .mai:first-child {
+  border-right: 2px solid #ddd;
+  padding-right: 60px;
+}
+
+.mean .mai p:first-child {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.mean .mai p:last-child {
+  font-size: 12px;
+  color: #777;
+}
+
+/* =========================
+   SMALL CARDS
+========================= */
+.cards-work {
+  display: flex;
+  gap: 18px;
+}
+
+.cards-work .mai {
+  flex: 1;
+  background: white;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+  text-align: center;
+  padding: 38px 15px;
+}
+
+.cards-work .mai p:first-child {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.cards-work .mai:first-child p:first-child {
+  color: #00b050;
+}
+
+.cards-work .mai:last-child p:first-child {
+  color: red;
+}
+
+.cards-work .mai p:last-child {
+  color: #777;
+  font-size: 12px;
+}
+
+/* =========================
+   FORM SECTION
+========================= */
+.form {
+  width: 45%;
+  background: white;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+  padding: 18px;
+}
+
+.form h1 {
+  font-size: 18px;
+  margin-bottom: 18px;
+  font-weight: bold;
+}
+
+/* =========================
+   INPUTS
+========================= */
+.mahi {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+}
+
+.mahi input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  outline: none;
+  font-size: 13px;
+  background: #fff;
+}
+
+.mahi input:focus {
+  border-color: #f07f2f;
+}
+
+/* =========================
+   ERROR STYLES
+========================= */
+.error-message {
+  color: red;
+  font-size: 10px;
+  display: none;
+  margin-top: 3px;
+}
+
+.is-invalid {
+  border: 1px solid red !important;
+}
+
+.is-invalid + .error-message {
+  display: block;
+}
+
+/* =========================
+   COLOR + FILE
+========================= */
+.baby {
+  display: flex;
+  gap: 12px;
+}
+
+.baby .input-container {
+  flex: 1;
+}
+
+.two {
+  width: 100%;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.mama {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.mama button {
+  flex: 1;
+  padding: 11px;
+  border: none;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.mama button:first-child {
+  background: #f07f2f;
+  color: white;
+}
+
+.mama button:first-child:hover {
+  background: #d96b1f;
+}
+
+.mama button:last-child {
+  background: #d8d8d8;
+  color: #222;
+}
+
+.mama button:last-child:hover {
+  background: #c8c8c8;
+}
+
+/* =========================
+   TABLE
+========================= */
+.table {
+  width: 100%;
+  margin-top: 18px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: black;
+  color: white;
+}
+
+thead th {
+  padding: 10px;
+  font-size: 13px;
+  border: 1px solid #444;
+  text-transform: uppercase;
+}
+
+tbody td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ccc;
+  font-size: 12px;
+}
+
+tbody tr:nth-child(even) {
+  background: #f7f7f7;
+}
+
+tbody tr:hover {
+  background: #efefef;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 950px) {
+  .topsection {
+    flex-direction: column;
+  }
+
+  .cards,
+  .form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 650px) {
+  body {
+    padding: 10px;
+  }
+
+  .mean {
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+  }
+
+  .mean .mai:first-child {
+    border-right: none;
+    border-bottom: 2px solid #ddd;
+    padding-right: 0;
+    padding-bottom: 20px;
+  }
+
+  .cards-work {
+    flex-direction: column;
+  }
+
+  .baby {
+    flex-direction: column;
+  }
+
+  .mama {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,49 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Sign Up
+  link(rel='stylesheet' href='/css/login.css')
+.card
+  .cont
+    h1 Sign Up
+    
+    //- Flash message display
+    if success_msg && success_msg.length > 0
+      .alert.success
+        = success_msg
+        span(style="float:right; cursor:pointer;" onclick="this.parentElement.style.display='none'") &times;
+    if error_msg && error_msg.length > 0
+      .alert.error
+        = error_msg
+        span(style="float:right; cursor:pointer;" onclick="this.parentElement.style.display='none'") &times;
+
+    form(action='/signup' method='POST')
+      input(type='text' name='fullname' placeholder='FullName')
+      input(type='email' name='email' placeholder='Email')
+      input(type='tel' name='phone' placeholder='Phone Number')
+      input(type='password' name='password' placeholder='Password')
+      input(type='password' name='confirmpassword' placeholder='Confirm Password')
+      button(type='submit') Sign Up
+      p
+        | Have an account? 
+        a(href='/login') Login
+
+  script.
+    document.querySelector('form').addEventListener('submit', function(event) {
+      const inputs = this.querySelectorAll('input');
+      let hasEmpty = false;
+      
+      inputs.forEach(input => {
+        if (!input.value.trim()) {
+          input.classList.add('error-border');
+          hasEmpty = true;
+        } else {
+          input.classList.remove('error-border');
+        }
+      });
+
+      if (hasEmpty) {
+        event.preventDefault(); 
+      }
+    });

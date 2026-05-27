@@ -1,0 +1,129 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Document
+  link(rel='stylesheet' href='/css/dash.css')
+  style.
+    /* Validation Styles */
+    .input-container { display: flex; flex-direction: column; margin-bottom: 5px; }
+    .error-message { color: red; font-size: 10px; display: none; margin-bottom: 5px; }
+    .is-invalid { border: 2px solid red !important; }
+    .is-invalid + .error-message { display: block; }
+    
+    /* Success Banner */
+    .flash-success { 
+      background-color: #28a745; color: white; padding: 10px; border-radius: 4px; 
+      margin-bottom: 15px; display: flex; justify-content: space-between; 
+      align-items: center; font-weight: bold;
+    }
+
+    /* Modal Styles */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 1000; }
+    .modal-content { background: #4cc9c0; padding: 40px; color: white; border-radius: 8px; text-align: center; font-family: sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+
+.container
+  .topsection
+    .cards
+      .mean
+        .mai
+          p UGX 20000000
+          p sales
+        .mai
+          p UGX 15000000
+          p Orders
+      .cards-work
+        .mai
+          p #{stats.instock.toLocaleString()}
+          p Instock
+        .mai
+          p 10
+          p Out of stock
+    .form
+      //- This keeps your existing product-success message logic
+      if successMessage
+        .flash-success
+          = successMessage
+          span(style="cursor:pointer;" onclick="this.parentElement.style.display='none'") &times;
+      
+      h1 Add Product
+      form(id='productForm' action='/dashboard' method="post" enctype='multipart/form-data')
+        .overall
+          .mahi
+            .input-container
+              input(type='text' name='productName' placeholder='ProductName')
+              span.error-message Invalid field
+            .input-container
+              input(type='text' name='category' placeholder='Category')
+              span.error-message Invalid field
+            .input-container
+              input(type='number' name='price' placeholder='Price')
+              span.error-message Invalid field
+            .input-container
+              input(type='number' name='quantity' placeholder='Quantity')
+              span.error-message Invalid field
+            .baby
+              .input-container
+                input.two(type='text' placeholder='color' name='color')
+                span.error-message Invalid field
+              .input-container
+                input.two(type='file' name='itemImage')
+                span.error-message Invalid field
+          .mama
+            button(type='submit') Save
+            button(type='button' onclick="document.getElementById('productForm').reset()") Clear
+  .table
+    table
+        thead
+            tr
+                th ProductId
+                th Name
+                th Category
+                th Price (UGX)
+                th Quantity
+        tbody
+          each product in dbProduct 
+            tr
+                td ##{product.productId}
+                td #{product.productName}
+                td #{product.category}
+                td #{product.price}
+                td #{product.quantity}
+
+//- MODAL STRUCTURE (For Login Success)
+#successModal.modal-overlay
+  .modal-content
+    h2 CONGRATULATIONS!
+    p You have successfully signed into the Refactory system. Feel at home
+
+script.
+  // 1. Form Validation Script
+  document.getElementById('productForm').addEventListener('submit', function(e) {
+    let isValid = true;
+    const inputs = this.querySelectorAll('input');
+    inputs.forEach(input => {
+      if (!input.value.trim()) {
+        input.classList.add('is-invalid');
+        isValid = false;
+      } else {
+        input.classList.remove('is-invalid');
+      }
+    });
+    if (!isValid) {
+      e.preventDefault();
+    }
+  });
+
+  // 2. Login Success Modal Trigger
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('success') === 'true') {
+    const modal = document.getElementById('successModal');
+    modal.style.display = 'flex';
+    
+    // Auto-hide after 3 seconds
+    setTimeout(() => {
+      modal.style.display = 'none';
+      // Clean the URL
+      window.history.replaceState({}, document.title, "/dashboard");
+    }, 3000);
+  }

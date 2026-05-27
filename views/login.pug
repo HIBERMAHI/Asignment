@@ -1,0 +1,42 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Login
+  link(rel='stylesheet' href='/css/login.css')
+  style.
+    /* Add this to your login.css or here in style tags */
+    .error-border {
+      border: 2px solid red !important;
+    }
+
+.card
+  .cont
+    h1 Login
+    //- Ensure your form has an action and method
+    form(action='/login' method='POST' id='loginForm')
+      input(type='text' name='email' placeholder='Email or Phone Number')
+      input(type='password' name='password' placeholder='Password')
+      button(type='submit') Login
+      p
+        | Don&apos;t have an account? 
+        a(href='/signup') Sign Up
+
+  script.
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      const inputs = this.querySelectorAll('input');
+      let hasEmpty = false;
+      
+      inputs.forEach(input => {
+        if (!input.value.trim()) {
+          input.classList.add('error-border');
+          hasEmpty = true;
+        } else {
+          input.classList.remove('error-border');
+        }
+      });
+
+      if (hasEmpty) {
+        event.preventDefault(); // Stop form submission if empty
+      }
+    });
