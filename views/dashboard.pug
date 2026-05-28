@@ -34,7 +34,7 @@ head
           p Orders
       .cards-work
         .mai
-          p #{stats.instock.toLocaleString()}
+          p #{stats.instock.toLocaleString()} UGX
           p Instock
         .mai
           p 10
@@ -84,7 +84,7 @@ head
         tbody
           each product in dbProduct 
             tr
-                td ##{product.productId}
+                td #{product.productId}
                 td #{product.productName}
                 td #{product.category}
                 td #{product.price}

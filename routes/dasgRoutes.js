@@ -19,9 +19,14 @@ router.get("/dashboard", async (req, res) => {
 
     let stats = { instock: 0 };
     const instockAgg = await Product.aggregate([
-      { $group: { _id: null, grandProducts: { $sum: "$quantity" } } },
+      {
+        $group: {
+          _id: null,
+          grandTotalValue: { $sum: { $multiply: ["$quantity", "$price"] } },
+        },
+      },
     ]);
-    stats.instock = instockAgg.length > 0 ? instockAgg[0].grandProducts : 0;
+    stats.instock = instockAgg.length > 0 ? instockAgg[0].grandTotalValue : 0;
 
     // 1. Existing logic for Product Addition (Green Banner)
     const successMessage = req.query.productSuccess
@@ -69,9 +74,14 @@ router.post("/dashboard", upload.single("itemImage"), async (req, res) => {
       instock: 0,
     };
     const instockAgg = await Product.aggregate([
-      { $group: { _id: null, grandProducts: { $sum: "$quantity" } } },
+      {
+        $group: {
+          _id: null,
+          grandTotalValue: { $sum: { $multiply: ["$quantity", "$price"] } },
+        },
+      },
     ]);
-    stats.instock = instockAgg.length > 0 ? instockAgg[0].grandProducts : 0;
+    stats.instock = instockAgg.length > 0 ? instockAgg[0].grandTotalValue : 0;
 
     // 5. REDIRECT to stop the resubmission error
     // We redirect to the dashboard with ?success=true so the GET route

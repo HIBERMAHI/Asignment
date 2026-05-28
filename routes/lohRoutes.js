@@ -22,8 +22,11 @@ router.post("/signup", async (req, res) => {
     if (!phoneRegex.test(phone)) {
       return res.status(400).send("Invalid phone number");
     }
-    if (password.length !== 11) {
-      return res.status(400).send("Password must be exactly 11 characters");
+    // Change from strict equality (=== 11) to a range check
+    if (password.length < 8 || password.length > 11) {
+      return res
+        .status(400)
+        .send("Password must be between 8 and 11 characters");
     }
 
     // 5. Confirm password match
@@ -44,11 +47,11 @@ router.post("/signup", async (req, res) => {
     // 5. Register with Passport
     // We use the promise-based version (await) instead of a callback for cleaner code
     await Registration.register(newuser, password);
-    req.flash('success_msg', 'Account created successfully! - Login');
+    req.flash("success_msg", "Account created successfully! - Login");
     res.redirect("signup");
   } catch (error) {
     console.error("Registration error", error);
-    res.status(400).send("Registration failed", + error.message);
+    res.status(400).send("Registration failed", +error.message);
   }
 });
 router.get("/login", (req, res) => {
@@ -59,12 +62,12 @@ router.post("/login", (req, res, next) => {
     // This tells Passport where to go on success
     // We add ?success=true so the dashboard knows to show your modal
     successRedirect: "/dashboard?success=true",
-    
+
     // This tells Passport where to go if they type the wrong password
     failureRedirect: "/login",
-    
+
     // This allows you to show an error message (like "Invalid login")
-    failureFlash: true 
+    failureFlash: true,
   })(req, res, next);
 });
 

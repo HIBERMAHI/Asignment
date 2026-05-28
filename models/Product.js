@@ -40,11 +40,12 @@ ProductSchema.pre("save", async function () {
       .findOne()
       .sort({ _id: -1 });
 
-    const nextId = lastProduct
-      ? parseInt(lastProduct.productId.replace("#", "")) + 1
-      : 645341;
+    // ADD THIS BLOCK
+    const lastIdNumber = lastProduct
+      ? parseInt(lastProduct.productId.replace(/#/g, ""))
+      : 645340;
 
-    this.productId = "#" + nextId;
+    this.productId = "#" + (lastIdNumber + 1);
   }
 });
 
